@@ -24,7 +24,6 @@ class Account(Base):
     amount_credit = Column(Integer)
     balancer = Column(Integer)
     transaction_date = Column(String)
-
 Base.metadata.create_all(engine)
 
 
