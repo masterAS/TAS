@@ -68,8 +68,18 @@ def load_logged_in_user():
         db_session = sessionmaker(bind = engine)
         d_session = db_session()
         g.user = d_session.query(db.Users).filter(db.Users.username == user_id).all()
-        
+
 @bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
+        return view(**kwargs)
+
+    return wrapped_view
