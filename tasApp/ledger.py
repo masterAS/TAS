@@ -10,4 +10,4 @@ bp = Blueprint('ledger', __name__)
 
 @bp.route('/')
 def index():
-    template('index.html')
+    render_template('index.html')
