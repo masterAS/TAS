@@ -29,10 +29,10 @@ def register():
             error = 'User {} is already registered.'.format(username)
 
         if error is None:
-            user = db.Users(first_name = first_name, last_name= last_name, email = email, 
+            user = db.Users(first_name = first_name, last_name=last_name, email = email, 
             username= username, password=generate_password_hash(password), phone= phone)
             d_session.add(user)
-            session.commit()
+            d_session.commit()
             return redirect(url_for('auth.login'))
         flash(error)
     return render_template('auth/register.html')
