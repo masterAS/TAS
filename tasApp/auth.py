@@ -25,7 +25,7 @@ def register():
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
-        elif d_session.query(db.Users).filter(db.Users.username == username):
+        elif d_session.query(db.Users).filter(db.Users.username == username).all():
             error = 'User {} is already registered.'.format(username)
 
         if error is None:
@@ -46,6 +46,7 @@ def login():
         d_session = db_session()
         error = None
         user = d_session.query(db.Users).filter(db.Users.username == username).all()
+        print(user[0].password)
         if user is None:
             error = 'Incorrect username.'
         elif not check_password_hash(user[0].password, password):
