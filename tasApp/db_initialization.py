@@ -14,7 +14,6 @@ class Users(Base):
    phone = Column(String)
    password = Column(String)
 #class for accounting data 
-
 class Account(Base):
     __tablename__ = 'account_data'
     transaction_id = Column(Integer, primary_key=True, autoincrement=True)
