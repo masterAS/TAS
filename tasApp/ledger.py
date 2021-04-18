@@ -57,12 +57,12 @@ def addentry():
         d_session = db_session()
         vehicle_number = request.form['vehicle_number']
         trip_no = request.form['trip_no']
-        print(trip_no)
+        #print(trip_no)
         transaction_type = request.form['transaction_type']
         transaction_description = request.form['transaction_description']
         t_date= request.form['date']
         month = t_date.split("-")[0]+"-"+t_date.split("-")[1]
-        print(month)
+        #print(month)
         rows = d_session.query(db.Account).filter(and_(db.Account.vehicle_number==vehicle_number, db.Account.trip_no==int(trip_no),
          db.Account.transaction_date.startswith(month))).all()
         net_bal = 0
