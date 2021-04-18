@@ -6,9 +6,23 @@
 {% block content %}
 <form method="post" action="{{ url_for('ledger.search') }}">
     <label for="Vehicle Number">Vehicle Number</label>
-    <input name="vehicle_number" id="vehicle_number" required>   
-    <label for="date">Date</label>
-    <input type="date" name="date" id="date" required>
+    <input name="vehicle_number" id="vehicle_number" required>
+    <label for="trip_no">Trip Number</label>
+    <select name="trip_no" id="trip_no"  required>
+      <option value="None"> -Select-</option>
+        <option value="1"> 1 </option>
+        <option value="2"> 2</option>
+        <option value="3"> 3</option>
+        <option value="4"> 4</option>
+        <option value="5"> 5 </option>
+        <option value="6"> 6</option>
+        <option value="7"> 7</option>
+        <option value="8"> 8</option>
+        <option value="9"> 9 </option>
+        <option value="10">10</option>
+    </select>
+    <label for="month">month</label>
+    <input type="month" name="month" id="month" required> 
     <input type="submit" value="Search">
 </form>
 {% endblock %}

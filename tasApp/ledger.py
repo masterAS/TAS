@@ -78,7 +78,7 @@ def addentry():
         username = session.get('user_id')
         current_time = str(time.strftime("%H:%M:%S",time.localtime()))
         
-        account = db.Account(vehicle_number=vehicle_number,username=username, transaction_type=transaction_type,
+        account = db.Account(vehicle_number=vehicle_number,username=username, trip_no = trip_no ,transaction_type=transaction_type,
         transaction_description = transaction_description , amount_debit=amount_debit, amount_credit =amount_credit,
         balance = balance, transaction_date=t_date , transaction_time =current_time)
         d_session.add(account)
@@ -86,4 +86,4 @@ def addentry():
         return redirect(url_for('ledger.display',vehicle_number=vehicle_number,t_date=t_date))
     else:
         vehicle_number = request.args.get('vehicle_number')
-        return redirect(url_for('ledger.addentry',vehicle_number=vehicle_number))
+        return render_template('addentry.html',vehicle_number=vehicle_number)
