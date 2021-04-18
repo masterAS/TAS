@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Legder{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+<table>
+    <tr>
+        <th>Vehicle Number</th>
+        <th>Description</th>
+        <th>Amount Debit </th>
+        <th>Amount Credit</th>
+        <th>Balance</th>
+        <th>Date</th>
+        <th>Time</th>
+    </tr>
+    {% for row in rows %}
+    <tr>
+        <td>{{row['vehicle_number']}}</td>
+        <td>{{row['transaction_description']}}</td>
+        <td>{{row['amount_debit']}}</td>
+        <td>{{row['amount_credit']}}</td>
+        <td>{{row['balance']}}</td>
+        <td>{{row['transaction_date']}}</td>
+        <td>{{row['transaction_time']}}</td>
+    </tr>
+    {%endfor%}
+</table>
+<h1><a href="{{url_for('ledger.addentry')}}">Add More Rows </a></h1>
+<h1><a href="{{url_for('ledger.search')}}">Search for Another Vehicle </a></h1>
+{% endblock %}

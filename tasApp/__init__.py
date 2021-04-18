@@ -9,6 +9,9 @@ def create_app(test_config=None):
     )
     from . import auth
     app.register_blueprint(auth.bp)
+    from . import ledger
+    app.register_blueprint(ledger.bp)
+    app.add_url_rule('/', endpoint='index')
 
     if test_config is None:
         # load the instance config, if it exists, when not testing

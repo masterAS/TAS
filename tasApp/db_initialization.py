@@ -19,10 +19,13 @@ class Account(Base):
     transaction_id = Column(Integer, primary_key=True, autoincrement=True)
     vehicle_number = Column(String)
     username = Column(String,ForeignKey('users.username'))
+    transaction_type = Column(String)
+    transaction_description = Column(String)
     amount_debit = Column(Integer)
     amount_credit = Column(Integer)
-    balancer = Column(Integer)
+    balance = Column(Integer)
     transaction_date = Column(String)
+    transaction_time = Column(String)
 Base.metadata.create_all(engine)
 
 

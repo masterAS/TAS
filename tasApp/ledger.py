@@ -18,12 +18,14 @@ bp = Blueprint('ledger', __name__)
 def index():
     return render_template('index.html')
 
-@bp.route('/search')
+@bp.route('/search', methods=('GET', 'POST'))
 @login_required
 def search():
-    
-    return "underconstruction"
-
+    if request.method == 'POST':
+        vehicle_number = request.form['vehicle_number']
+        t_date= request.form['date']
+        return redirect(url_for('ledger.display',vehicle_number=vehicle_number,t_date=t_date))
+    return render_template('search.html')
 @bp.route('/display')
 @login_required
 def display():
@@ -53,7 +55,6 @@ def addentry():
         bal =0
         if len(rows)!=0:
             bal = rows[-1].balance
-        date = request.form['date']
         amount = request.form['amount']
         if transaction_type =='debit':
             amount_debit = int(amount)

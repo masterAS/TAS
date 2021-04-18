@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 engine = create_engine('sqlite:///tas_db.db', echo = True)
 from sqlalchemy.orm import sessionmaker
 from . import db_initialization as db
+
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -66,9 +67,12 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        db_session = sessionmaker(bind = engine)
-        d_session = db_session()
-        g.user = d_session.query(db.Users).filter(db.Users.username == user_id).all()
+        try:
+            db_session = sessionmaker(bind = engine)
+            d_session = db_session()
+            g.user = d_session.query(db.Users).filter(db.Users.username == user_id).all()[0]
+        except:
+            g.user = None
 
 @bp.route('/logout')
 def logout():

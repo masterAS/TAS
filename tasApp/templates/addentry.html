@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Add Entry{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post" action="{{ url_for('ledger.addentry') }}">
+    <label for="Vehicle Number">Vehicle Number</label>
+    <input name="vehicle_number" id="vehicle_number" required>
+    <label for="transaction_type">Transaction Type</label>
+    <select name="transaction_type" id="transaction_type" required>
+        <option value="debit"> Debit </option>
+        <option value="Credit"> Credit</option>
+    </select>
+    <label for="transaction_description">Description</label>
+    <input name="transaction_description" id="transaction_description" required>
+    <label for="amount">Amount</label>
+    <input name="amount" id="amount" required>       
+    <label for="date">Date</label>
+    <input type="date" name="date" id="date" required>
+    <input type="submit" value="Add">
+</form>
+{% endblock %}
