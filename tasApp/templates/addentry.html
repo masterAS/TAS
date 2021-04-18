@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Add Entry{% endblock %}</h1>
+  <h1>{% block title %} "{{vehicle_number}}" {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-<form method="post" action="{{ url_for('ledger.addentry') }}">
-    <label for="Vehicle Number">Vehicle Number</label>
-    <input name="vehicle_number" id="vehicle_number" value={{vehicle_number}} required>
+<form method="post" action="{{ url_for('ledger.addentry') }}">   
+    <input type="hidden" name="vehicle_number" id="vehicle_number" value="{{vehicle_number}}" required>
     <label for="trip_no">Trip Number</label>
     <select name="trip_no" id="trip_no"  required>
       <option value="None"> -Select-</option>

@@ -45,7 +45,7 @@ def display():
 def vehicle():
     if request.method == 'POST':
         vehicle_number = request.form['vehicle_number']
-        return redirect(url_for('ledger.addentry',vehicle_number=vehicle_number))
+        return redirect(url_for('ledger.addentry', vehicle_number=vehicle_number))
     return render_template('vehicle.html')  
 
 @bp.route('/addentry', methods=('GET', 'POST'))
@@ -54,6 +54,7 @@ def addentry():
         db_session = sessionmaker(bind = engine)
         d_session = db_session()
         vehicle_number = request.form['vehicle_number']
+        trip_no = request.form['trip_no']
         transaction_type = request.form['transaction_type']
         transaction_description = request.form['transaction_description']
         t_date= request.form['date']
@@ -84,4 +85,5 @@ def addentry():
         d_session.commit()
         return redirect(url_for('ledger.display',vehicle_number=vehicle_number,t_date=t_date))
     else:
-        return render_template('addentry.html',vechile_number=vehicle_number)
+        vehicle_number = request.args.get('vehicle_number')
+        return redirect(url_for('ledger.addentry',vehicle_number=vehicle_number))
