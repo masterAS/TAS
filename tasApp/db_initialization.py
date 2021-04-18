@@ -18,6 +18,7 @@ class Account(Base):
     __tablename__ = 'account_data'
     transaction_id = Column(Integer, primary_key=True, autoincrement=True)
     vehicle_number = Column(String)
+    trip_no = Column(Integer)
     username = Column(String,ForeignKey('users.username'))
     transaction_type = Column(String)
     transaction_description = Column(String)
