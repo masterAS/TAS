@@ -26,6 +26,7 @@ def search():
         t_date= request.form['date']
         return redirect(url_for('ledger.display',vehicle_number=vehicle_number,t_date=t_date))
     return render_template('search.html')
+
 @bp.route('/display')
 @login_required
 def display():
@@ -39,6 +40,13 @@ def display():
             print(r)
     if rows is not None:
         return render_template('display.html', rows=rows)
+
+@bp.route('/searchVehicle', methods=('GET', 'POST'))
+def vehicle():
+    if request.method == 'POST':
+        vehicle_number = request.form['vehicle_number']
+        return redirect(url_for('ledger.addentry',vehicle_number=vehicle_number))
+    return render_template('vehicle.html')  
 
 @bp.route('/addentry', methods=('GET', 'POST'))
 def addentry():
@@ -75,4 +83,5 @@ def addentry():
         d_session.add(account)
         d_session.commit()
         return redirect(url_for('ledger.display',vehicle_number=vehicle_number,t_date=t_date))
-    return render_template('addentry.html')
+    else:
+        return render_template('addentry.html',vechile_number=vehicle_number)
