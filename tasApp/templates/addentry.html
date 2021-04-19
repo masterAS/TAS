@@ -2,6 +2,8 @@
 
 {% block header %}
   <h1>{% block title %} {{vehicle_number}} {% endblock %}</h1>
+  <a href="{{ url_for('ledger.search') }}">Search </a>
+
 {% endblock %}
 
 {% block content %}

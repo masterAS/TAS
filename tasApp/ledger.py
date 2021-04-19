@@ -41,7 +41,9 @@ def display():
     for r in rows:
             print(r)
     if rows is not None:
-        return render_template('display.html', rows=rows)
+        return render_template('display.html', rows=rows, month=month)
+    else:
+        flash("No data found")
 
 @bp.route('/searchVehicle', methods=('GET', 'POST'))
 def vehicle():
@@ -88,7 +90,8 @@ def addentry():
         balance = balance, transaction_date=t_date , transaction_time =current_time)
         d_session.add(account)
         d_session.commit()
-        return redirect(url_for('ledger.display', vehicle_number=vehicle_number, month=month, trip_no=trip_no))
+        flash('Data successfully added. Please use search function check it')
+        return render_template('addentry.html',vehicle_number=vehicle_number)
     else:
         vehicle_number = request.args.get('vehicle_number')
         return render_template('addentry.html',vehicle_number=vehicle_number)

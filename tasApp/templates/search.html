@@ -2,7 +2,9 @@
 
 {% block header %}
   <h1>{% block title %}Search Ledger{% endblock %}</h1>
+  
 {% endblock %}
+<button onclick="window.print()">Print this page</button>
 {% block content %}
 <form method="post" action="{{ url_for('ledger.search') }}">
     <label for="Vehicle Number">Vehicle Number</label>

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Legder{% endblock %}</h1>
+  <h1>{% block title %} Legder {% endblock %}</h1>
+  <button onclick="window.print()">Print this page</button>
 {% endblock %}
 {% block content %}
+<h1 style="text-align: center;">  {{rows[0]['vehicle_number']}} details for {{month}} </h1>
 <table>
     <tr>
         <th>Vehicle Number</th>
